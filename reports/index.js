@@ -2,7 +2,7 @@ let reporter = require('cucumber-html-reporter');
 
 const options = {
     theme: 'bootstrap',
-    jsonFile: 'lib/Cucumber/reports/report.json',
+    jsonFile: './report.json',
     ignoreBadJsonFile: true,
     output: './report.html',
     reportSuiteAsScenarios: true,

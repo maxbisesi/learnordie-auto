@@ -1,4 +1,4 @@
-import {When, Then} from 'cucumber';
+import {When, Then} from '@cucumber/cucumber';
 import logger from '../../logger';
 import Utils from '../../Utils';
 import apiManager from '../apiManager';

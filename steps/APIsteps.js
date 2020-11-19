@@ -1,8 +1,8 @@
-import {When, Then, Before, After} from 'cucumber';
+import {When, Then, Before, After} from '@cucumber/cucumber';
 import axios from 'axios';
 import assert from 'assert';
-import DAO from '../../DAO';
-import logger from '../../Logger';
+import DAO from '../DAO';
+import logger from '../Logger';
 import dotenv from 'dotenv';
 import webdriver from 'selenium-webdriver';
 /**

@@ -1,7 +1,7 @@
 import logger from './Logger';
 import uuid from 'uuid';
 import { config } from './config';
-import { testData } from './Cucumber/testData';
+import { testData } from './testData';
 
 class Utils {
   randomData = {

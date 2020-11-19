@@ -1,4 +1,4 @@
-import {When, Then, Before, After} from 'cucumber';
+import {When, Then, Before, After} from '@cucumber/cucumber';
 import dotenv from 'dotenv';
 import webdriver,{By, until} from 'selenium-webdriver';
 import assert from 'assert';

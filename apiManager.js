@@ -1,6 +1,6 @@
-import logger from '../Logger';
-import Utils from '../Utils';
-import { queryData } from './queryData';
+import logger from 'Logger';
+import Utils from 'Utils';
+import { queryData } from 'queryData';
 import axios from 'axios';
 import dotenv from 'dotenv';
 
