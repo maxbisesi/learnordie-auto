@@ -1,0 +1,47 @@
+Arguments: 
+  /usr/local/Cellar/node/13.10.1/bin/node /usr/local/Cellar/yarn/1.22.4/libexec/bin/yarn.js add chromedriver
+
+PATH: 
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  13.10.1
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/bisesma/learnordie-auto/package.json: Unexpected token } in JSON at position 498
+      at JSON.parse (<anonymous>)
+      at /usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:310:30)
+      at /usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "learnordie-auto",
+    "version": "1.0.0",
+    "description": "QA auto test for LearnOrDie",
+    "main": "index.js",
+    "repository": "https://github.com/maxbisesi/learnordie-auto.git",
+    "author": "Max Bisesi <max.bisesi@gmail.com>",
+    "license": "MIT",
+    "private": false,
+    "scripts": {
+      "webpack": "webpack -wd",
+      "tags": "./scripts/e2e.test.tags.sh",
+      "test:e2e": "./scripts/e2e.test.sh",
+      "test:unit:coverage": "nyc --reporter=html --reporter=text yarn tags @AdminAPI"
+    },
+  
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
