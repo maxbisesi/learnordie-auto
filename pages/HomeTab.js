@@ -1,8 +1,8 @@
 import {By, until} from 'selenium-webdriver';
 import { loginData } from '../loginData';
-import logger from '../../logger';
+import logger from '../logger';
 import TemplatePage from './TemplatePage';
-import Utils from '../../Utils';
+import Utils from '../Utils';
 import LoginProfile from './LoginProfile';
 
 export default class HomeTab extends TemplatePage {

@@ -1,6 +1,6 @@
 import webdriver,{By, until} from 'selenium-webdriver';
 import { loginData } from '../loginData';
-import logger from '../../logger';
+import logger from '../logger';
 
 export default class TemplatePage {
 	pageName = 'TemplatePage';

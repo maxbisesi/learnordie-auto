@@ -1,8 +1,8 @@
 import {When, Then} from '@cucumber/cucumber';
-import logger from '../../logger';
+import logger from '../logger';
 import { loginData } from '../loginData';
 import { queryData } from '../queryData';
-import Utils from '../../Utils';
+import Utils from '../Utils';
 
 When('The user selects the following question cards:',{ timeout: 40000 }, async function(rawtable) {
     logger('The user selects the following question cards:');

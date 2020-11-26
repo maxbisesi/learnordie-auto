@@ -2,8 +2,8 @@ import {When, Then, Before, After} from '@cucumber/cucumber';
 import dotenv from 'dotenv';
 import webdriver,{By, until, WebElement} from 'selenium-webdriver';
 import assert from 'assert';
-import logger from '../../logger';
-import Utils from '../../Utils';
+import logger from '../logger';
+import Utils from '../Utils';
 import { loginData } from '../loginData';
 
 When('The user creates a new Collection named: {string}',{timeout: 6000}, async function(name) {

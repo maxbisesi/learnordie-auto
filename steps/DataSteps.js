@@ -1,6 +1,6 @@
 import {When, Then} from '@cucumber/cucumber';
-import logger from '../../logger';
-import Utils from '../../Utils';
+import logger from '../Logger';
+import Utils from '../Utils';
 import apiManager from '../apiManager';
 import { queryData } from '../queryData';
 import { loginData } from '../loginData';

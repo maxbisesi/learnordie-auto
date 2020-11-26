@@ -1,6 +1,6 @@
 import {By, until} from 'selenium-webdriver';
 import { loginData } from '../loginData';
-import logger from '../../logger';
+import logger from '../logger';
 import TemplatePage from './TemplatePage';
 
 export default class TestTab extends TemplatePage {
