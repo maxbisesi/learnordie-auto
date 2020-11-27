@@ -63,12 +63,34 @@ export default class ChumTab extends TemplatePage {
     }
     
     async clickUnicodeButton(key,val) {
-        let unicodeCharacters = ['⁰','¹','²','³','⁴','⁵','⁶','⁷','⁸','⁹','¼','½','¾','₀','₁','₂','₃','₄','₅','₆','₇','₈','₉','∞','π'];
+        const unicodeCharacters = ['⁰','¹','²','³','⁴','⁵','⁶','⁷','⁸','⁹','¼','½','¾','₀','₁','₂','₃','₄','₅','₆','₇','₈','₉','∞','π'];
+        const unicodeButtons = await this.driver.wait(until.elementsLocated(By.className('unicode-button')));
+        
+        // Focus on element first 
+        switch(key) {
+            case `Card`: 
+                await this.driver.wait(until.elementLocated(By.id('chumcard'), 3000)).click();
+                break;
+            case `Answer`: 
+                await this.driver.wait(until.elementLocated(By.id('chumanswer'), 3000)).click();
+                break;
+            case `Category`:
+                await this.driver.wait(until.elementLocated(By.id('chumcategory'), 3000)).click();
+                break;
+            default: throw new Error(`${key} not defined in clickUnicodeButton(key,val) on ${this.pageName}`);
+        }
+
         if(val.startsWith('randomUnicode')) {
             let uniClicks = val.split(':')[1];
             logger(`Clicking ${uniClicks} unicode characters.`);
+            for(let ranuni = 0; ranuni < uniClicks; ++ranuni) {
+               let rand = Math.floor(Math.random()*unicodeButtons.length);
+                await unicodeButtons[rand].click();
+            }
         }
-        logger(`-> Clicked unicode ${key} for ${val}`);
+        
+        
+        logger(`    Clicked ${val}`);
         return true;
     }
 
