@@ -17,5 +17,5 @@ source <(dotenv-export | sed 's/\\n/\n/g')
 export TEST_BROWSER="$browser"
 export SLEEP_BEFORE_QUIT="$sleepBeforeQuit"
 
-npx cucumber-js features --format message:reports/report.json --require-module @babel/register --require steps --tags $1
+npx cucumber-js features --format json:reports/report.json --require-module @babel/register --require steps --tags $1
 node reports/index.js

@@ -277,7 +277,7 @@ pre {
         <div class="navbar-header">
         
           <a class="navbar-brand">Cucumberjs Report</a>
-          <div class="project-name visible-md visible-lg">learnordie</div>
+          <div class="project-name visible-md visible-lg">learnordie-auto</div>
           <div class="label-container">
             <span class="label label-success" onclick="toggle('.feature-passed')" title=scenarios>Passed: 1</span>
             <span class="label label-danger" onclick="toggle('.feature-failed')" title=scenarios>Failed: 0</span>
@@ -288,7 +288,7 @@ pre {
 
     <div class="container">
 
-      <div class="generated-on">Wed Nov 18 2020 15:23:24 GMT-0700 (Mountain Standard Time)</div>
+      <div class="generated-on">Thu Nov 26 2020 18:59:30 GMT-0500 (Eastern Standard Time)</div>
 
       <div class="row">
         <div class="chart col-lg-6 col-md-6" id="piechart_features"></div>
@@ -311,14 +311,14 @@ pre {
                 <h4 class="panel-title">
                     
                     <div class="tags"> <span class="tag">@Regression</span>
-                         <span class="tag">@Test</span>
+                         <span class="tag">@Chum</span>
                         
                     </div>
                     
-                    <a data-toggle="collapse" href="#collapseFeaturelearnordie8f86052d-2e1f-45d5-ba6c-3658bbdfecb7">
+                    <a data-toggle="collapse" href="#collapseFeaturelearnordie_auto99b02040-5458-4f4d-a865-52c0147be18e">
                         <i class="glyphicon glyphicon-chevron-right"></i>
                         <i class="glyphicon glyphicon-chevron-down"></i>
-                        <b>Feature:</b>Interact with the Test Tab
+                        <b>Feature:</b>Create, Organize, and Delete FlashCards
                         <span class="label-container">
               <span class="label label-success"
                                                          title="1 Scenarios Passed">1</span>
@@ -331,10 +331,10 @@ pre {
                     </a>
                 </h4>
             </div>
-            <div id="collapseFeaturelearnordie8f86052d-2e1f-45d5-ba6c-3658bbdfecb7" class="panel-collapse collapse">
+            <div id="collapseFeaturelearnordie_auto99b02040-5458-4f4d-a865-52c0147be18e" class="panel-collapse collapse">
                 <div class="panel-body">
                     
-                    <div class="description">    Update a Card.<br/>    Save a Card for review then review it.<br/>    Show the Answer.<br/>    Go back to previous Card.<br/>    Study a Card Set.<br/>    Points should update as intended.</div>
+                    <div class="description">    This is done through the Chum and Galley tabs.<br/>    Use the profile tab to activate modules used to add<br/>    speciel characters a question or answer.</div>
                     
                     
                     
@@ -343,22 +343,22 @@ pre {
                             <h4 class="panel-title">
                                 
                                 
-                                <div class="tags"> <span class="tag"> @TestUpdateCard</span>
+                                <div class="tags"> <span class="tag"> @ChumNewCard</span>
                                     
                                 </div>
                                 
-                                <a data-toggle="collapse" href="#collapseScenariolearnordie2b5f2dd1-c9d9-48b6-bb25-37f60cdb340c">
+                                <a data-toggle="collapse" href="#collapseScenariolearnordie_auto2ea87e5a-4cf4-4c02-8889-d3a28056dd79">
                                     <div>
 
                                         <div style="padding-right: 30px">
                                             <i class="glyphicon glyphicon-chevron-right"></i>
                                             <i class="glyphicon glyphicon-chevron-down"></i>
-                                            <b>Scenario:</b>The user can update a card they own (TestUpdateCard)
+                                            <b>Scenario:</b>On the Chum tab User creates a new FlashCard (ChumNewCard)
                                         </div>
                                         <div>
                             <span class="label-container">
                               <span class="label label-success"
-                                                               title="10 Steps Passed">10</span>
+                                                               title="8 Steps Passed">8</span>
                               
                               
                               
@@ -371,10 +371,13 @@ pre {
                                 </a>
                             </h4>
                         </div>
-                        <div id="collapseScenariolearnordie2b5f2dd1-c9d9-48b6-bb25-37f60cdb340c"
+                        <div id="collapseScenariolearnordie_auto2ea87e5a-4cf4-4c02-8889-d3a28056dd79"
                              class="panel-collapse collapse">
                             <div class="panel-body">
                                 <div></div>
+                                
+                                <div class="description" id="scenario-description">. Other tests used the Chum tab to make sure cards showed up in categories<br/>        . This one will test that the card makes it to the DB.
+                                </div>
                                 
                                 
                                 
@@ -394,7 +397,7 @@ pre {
                             
                           
                               <span class="step-duration">
-                               1s 603ms
+                               1s 590ms
                               </span>
                             
                          
@@ -432,7 +435,7 @@ pre {
                             
                           
                               <span class="step-duration">
-                               1s 235ms
+                               1s 232ms
                               </span>
                             
                          
@@ -466,125 +469,11 @@ pre {
                                     
                                     <span class="text">
                         <span class="keyword highlight">And </span>
-                          <span> The user switches to the &quot;Test&quot; Tab</span>
+                          <span> The user switches to the &quot;Chum&quot; Tab</span>
                             
                           
                               <span class="step-duration">
-                               1s 67ms
-                              </span>
-                            
-                         
-                            
-                          
-                          <!-- Adding data table data-->
-                          
-                      </span>
-                                
-                                
-
-                                    
-
-                                    
-
-                                    
-
-                                    
-                                </div>
-                                </p>
-                                
-                                
-                                
-                                <p class="scenario-container">
-                                <div class="row steps">
-                                    
-                                    
-                                    <span class="label label-success" title="Success"><i
-                                            class="glyphicon glyphicon-ok"></i></span>
-                                    
-                                    
-                                    <span class="text">
-                        <span class="keyword highlight">When </span>
-                          <span> The user clicks the &quot;Nailed it&quot; button 5 times</span>
-                            
-                          
-                              <span class="step-duration">
-                               1s 324ms
-                              </span>
-                            
-                         
-                            
-                          
-                          <!-- Adding data table data-->
-                          
-                      </span>
-                                
-                                
-
-                                    
-
-                                    
-
-                                    
-
-                                    
-                                </div>
-                                </p>
-                                
-                                
-                                
-                                <p class="scenario-container">
-                                <div class="row steps">
-                                    
-                                    
-                                    <span class="label label-success" title="Success"><i
-                                            class="glyphicon glyphicon-ok"></i></span>
-                                    
-                                    
-                                    <span class="text">
-                        <span class="keyword highlight">And </span>
-                          <span> The user saves the &quot;Card Number&quot; field as &quot;card_id&quot;</span>
-                            
-                          
-                              <span class="step-duration">
-                               12ms
-                              </span>
-                            
-                         
-                            
-                          
-                          <!-- Adding data table data-->
-                          
-                      </span>
-                                
-                                
-
-                                    
-
-                                    
-
-                                    
-
-                                    
-                                </div>
-                                </p>
-                                
-                                
-                                
-                                <p class="scenario-container">
-                                <div class="row steps">
-                                    
-                                    
-                                    <span class="label label-success" title="Success"><i
-                                            class="glyphicon glyphicon-ok"></i></span>
-                                    
-                                    
-                                    <span class="text">
-                        <span class="keyword highlight">And </span>
-                          <span> The user clicks the &quot;Show&quot; button</span>
-                            
-                          
-                              <span class="step-duration">
-                               1s 43ms
+                               1s 45ms
                               </span>
                             
                          
@@ -622,7 +511,7 @@ pre {
                             
                           
                               <span class="step-duration">
-                               461ms
+                               417ms
                               </span>
                             
                          
@@ -670,6 +559,19 @@ pre {
                                       
                                       </tr>
                                     
+                                      <tr>
+                                      
+                                      
+                                        <td>
+                                          Category
+                                        </td>
+                                      
+                                        <td>
+                                          SeleniumQA
+                                        </td>
+                                      
+                                      </tr>
+                                    
                               </table>
                                </div>
                                         
@@ -705,11 +607,11 @@ pre {
                                     
                                     <span class="text">
                         <span class="keyword highlight">And </span>
-                          <span> The user clicks the &quot;Update&quot; button</span>
+                          <span> The user clicks the &quot;Submit&quot; button</span>
                             
                           
                               <span class="step-duration">
-                               1s 37ms
+                               1s 34ms
                               </span>
                             
                          
@@ -742,12 +644,112 @@ pre {
                                     
                                     
                                     <span class="text">
-                        <span class="keyword highlight">When </span>
+                        <span class="keyword highlight">Then </span>
+                          <span> The form matches the following values:</span>
+                            
+                          
+                              <span class="step-duration">
+                               1s 43ms
+                              </span>
+                            
+                         
+                            
+                               
+                                <div class="scrollBar">
+                                    <table class="arguments">
+                                    
+                                      <tr>
+                                      
+                                      
+                                        <th>
+                                          Field Name
+                                        </th>
+                                         
+                                        <th>
+                                          Value
+                                        </th>
+                                         
+                                        </tr>
+                                    
+                                      <tr>
+                                      
+                                      
+                                        <td>
+                                          Card
+                                        </td>
+                                      
+                                        <td>
+                                          
+                                        </td>
+                                      
+                                      </tr>
+                                    
+                                      <tr>
+                                      
+                                      
+                                        <td>
+                                          Answer
+                                        </td>
+                                      
+                                        <td>
+                                          
+                                        </td>
+                                      
+                                      </tr>
+                                    
+                                      <tr>
+                                      
+                                      
+                                        <td>
+                                          Category
+                                        </td>
+                                      
+                                        <td>
+                                          SeleniumQA
+                                        </td>
+                                      
+                                      </tr>
+                                    
+                              </table>
+                               </div>
+                                        
+                               
+
+                            
+                          
+                          <!-- Adding data table data-->
+                          
+                      </span>
+                                
+                                
+
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                </div>
+                                </p>
+                                
+                                
+                                
+                                <p class="scenario-container">
+                                <div class="row steps">
+                                    
+                                    
+                                    <span class="label label-success" title="Success"><i
+                                            class="glyphicon glyphicon-ok"></i></span>
+                                    
+                                    
+                                    <span class="text">
+                        <span class="keyword highlight">And </span>
                           <span> The user queries for a FlashCard with the following properties:</span>
                             
                           
                               <span class="step-duration">
-                               19ms
+                               20ms
                               </span>
                             
                          
@@ -807,6 +809,23 @@ pre {
                                       
                                       </tr>
                                     
+                                      <tr>
+                                      
+                                      
+                                        <td>
+                                          category
+                                        </td>
+                                      
+                                        <td>
+                                          =
+                                        </td>
+                                      
+                                        <td>
+                                          SeleniumQA
+                                        </td>
+                                      
+                                      </tr>
+                                    
                               </table>
                                </div>
                                         
@@ -846,7 +865,7 @@ pre {
                             
                           
                               <span class="step-duration">
-                               2ms
+                               1ms
                               </span>
                             
                          
@@ -872,37 +891,11 @@ pre {
                                       
                                       
                                         <td>
-                                          card_id
+                                          owner_id
                                         </td>
                                       
                                         <td>
-                                          testData:card_id
-                                        </td>
-                                      
-                                      </tr>
-                                    
-                                      <tr>
-                                      
-                                      
-                                        <td>
-                                          card
-                                        </td>
-                                      
-                                        <td>
-                                          randomCard
-                                        </td>
-                                      
-                                      </tr>
-                                    
-                                      <tr>
-                                      
-                                      
-                                        <td>
-                                          answer
-                                        </td>
-                                      
-                                        <td>
-                                          randomAnswer
+                                          4
                                         </td>
                                       
                                       </tr>
