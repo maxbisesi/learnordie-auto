@@ -3,6 +3,7 @@ import { loginData } from '../loginData';
 import logger from '../logger';
 import TemplatePage from './TemplatePage';
 import Validate from '../Validate';
+import Utils from '../Utils';
 
 export default class ChumTab extends TemplatePage {
     pageName = 'ChumTab';
@@ -65,33 +66,45 @@ export default class ChumTab extends TemplatePage {
     async clickUnicodeButton(key,val) {
         const unicodeCharacters = ['⁰','¹','²','³','⁴','⁵','⁶','⁷','⁸','⁹','¼','½','¾','₀','₁','₂','₃','₄','₅','₆','₇','₈','₉','∞','π'];
         const unicodeButtons = await this.driver.wait(until.elementsLocated(By.className('unicode-button')));
-        
+        let focusedElement;
         // Focus on element first 
         switch(key) {
             case `Card`: 
-                await this.driver.wait(until.elementLocated(By.id('chumcard'), 3000)).click();
+                focusedElement = await this.driver.wait(until.elementLocated(By.id('chumcard'), 3000));
+                focusedElement.click();
                 break;
             case `Answer`: 
-                await this.driver.wait(until.elementLocated(By.id('chumanswer'), 3000)).click();
+                focusedElement = this.driver.wait(until.elementLocated(By.id('chumanswer'), 3000));
+                focusedElement.click();
                 break;
             case `Category`:
-                await this.driver.wait(until.elementLocated(By.id('chumcategory'), 3000)).click();
+                focusedElement = this.driver.wait(until.elementLocated(By.id('chumcategory'), 3000));
+                focusedElement.click();
                 break;
             default: throw new Error(`${key} not defined in clickUnicodeButton(key,val) on ${this.pageName}`);
         }
 
-        if(val.startsWith('randomUnicode')) {
+        if(val.startsWith('randomUnicode:')) {
+            let randomUnicode = '';
             let uniClicks = val.split(':')[1];
-            logger(`Clicking ${uniClicks} unicode characters.`);
-            for(let ranuni = 0; ranuni < uniClicks; ++ranuni) {
-               let rand = Math.floor(Math.random()*unicodeButtons.length);
-                await unicodeButtons[rand].click();
+            if(Utils.randomData.randomUnicode === '' || Utils.randomData.randomUnicode === undefined) {
+                // Unicode characters haven't been clicked and saved yet, so do that then hold on to the value:
+                logger(`Clicking ${uniClicks} unicode characters.`);
+                for(let ranuni = 0; ranuni < uniClicks; ++ranuni) {
+                let rand = Math.floor(Math.random()*unicodeButtons.length);
+                    await unicodeButtons[rand].click();
+                    randomUnicode += await unicodeButtons[rand].getAttribute('value');
+                }
+                logger(`randomUnicode: ${randomUnicode}`);
+                Utils.randomData.randomUnicode = randomUnicode;
+            } else {
+                // There's already a Unicode value stored, use that one. There can only be one
+                focusedElement.sendKeys(Utils.randomData.randomUnicode);
             }
+            return true;
         }
-        
-        
-        logger(`    Clicked ${val}`);
-        return true;
+        logger(`Fail unknown val in clickUnicodeButton() on ChumTab`);
+        return false;
     }
 
 }

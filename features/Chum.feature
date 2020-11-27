@@ -46,10 +46,18 @@ Feature: Create, Organize, and Delete FlashCards
         And The user switches to the "Chum" Tab
         Then The "Math Module" is displayed
         And The user fills the form with the following values:
-            | Field Name | Value       |
-            | Card       | randomUnicode:5 |
-            | Answer     | randomUnicode:5 |
-            | Category   | SystemTest22 |
+            | Field Name | Value            |
+            | Card       | randomUnicode:25 |
+            | Answer     | randomUnicode:25 |
+            | Category   | randomCategory   |
+        And The user clicks the "Submit" button
+        And The user queries for a FlashCard with the following properties:
+            | Field    | Operator | Value          |
+            | category | =        | randomCategory |
+        Then The queried for "FlashCard" has the following values:
+            | Field Name | Value         |
+            | card       | randomUnicode |
+            | answer     | randomUnicode |
 
 
 

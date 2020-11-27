@@ -38,7 +38,7 @@ export default class TemplatePage {
 	async fillForm(formData=new Map()) {
 		logger(`Filling Form on Page: ${this.pageName} ...`);
 		for (const [key, val] of formData) {
-			if(key.includes('Unicode') || val.includes('Unicode')) {
+			if(key.includes('Unicode:') || val.includes('Unicode:') || key.includes('unicode:') || val.includes('unicode:')) {
 				if(await this.clickUnicodeButton(key,val) !== true) {
 					throw new Error(`Error clicking Unicode ${val} on ${loginData.currentPage}`);
 				}
@@ -51,7 +51,7 @@ export default class TemplatePage {
 		logger(`Filled Form.\n`);
 		return true;
 	}
-
+	
 	async getValue(field) {
 		throw new Error(`getValue not defined on ${this.pageName}`);
 	}

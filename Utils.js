@@ -95,7 +95,8 @@ class Utils {
     randomCard: '',
     randomAnswer: '',
     randomCategory:'',
-    randomUsername:''
+    randomUsername:'',
+    randomUnicode: ''
   };
 
   nums = [0,1,2,3,4,5,6,7,8,9];
@@ -239,13 +240,14 @@ class Utils {
     }
 
     insertSystemVal(val) {
-      logger(`  insertSystemVal for: |${val}|`);
+      //logger(`  insertSystemVal for: |${val}|`);
       if(val.startsWith('testData')) { 
         let datavar = val.split(':')[1];
         // logger(`insertSystemVal datavar: ${datavar}`);
         // logger(`insertSystemVal testData[datavar]: ${testData[datavar]}`);
         return testData[datavar];
       }
+
       switch(val) {
         case `randomusername`: 
           return this.randomData.randomUsername;
@@ -257,6 +259,9 @@ class Utils {
           return this.randomData.randomCard;
         case `randomAnswer`:
           return this.randomData.randomAnswer;
+        case `randomUnicode`:
+          // Should be ok if something like andomUnicode:25 is used it will pass through here. 
+          return this.randomData.randomUnicode;
         default: return val;
       }
     }
