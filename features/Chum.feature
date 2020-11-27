@@ -45,6 +45,11 @@ Feature: Create, Organize, and Delete FlashCards
         And The user activates the "Math" module
         And The user switches to the "Chum" Tab
         Then The "Math Module" is displayed
+        And The user fills the form with the following values:
+            | Field Name | Value           |
+            | Card       | randomUnicode:5 |
+            | Answer     | randomUnicode:5 |
+            | Category   | UnicodeTest     |
 
 
 

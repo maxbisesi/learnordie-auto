@@ -60,6 +60,16 @@ export default class ChumTab extends TemplatePage {
                 return true;
             default: throw new Error(`${field} not defined in fillField() on ${this.pageName}`);
         }
-	}
+    }
+    
+    async clickUnicodeButton(key,val) {
+        let unicodeCharacters = ['⁰','¹','²','³','⁴','⁵','⁶','⁷','⁸','⁹','¼','½','¾','₀','₁','₂','₃','₄','₅','₆','₇','₈','₉','∞','π'];
+        if(val.startsWith('randomUnicode')) {
+            let uniClicks = val.split(':')[1];
+            logger(`Clicking ${uniClicks} unicode characters.`);
+        }
+        logger(`-> Clicked unicode ${key} for ${val}`);
+        return true;
+    }
 
 }
