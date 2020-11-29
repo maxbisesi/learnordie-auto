@@ -26,9 +26,20 @@ export default class ChumTab extends TemplatePage {
             case `Category`:
                 const valcat = await this.driver.wait(until.elementLocated(By.id('chumcategory'), 3000));
                 return await Validate(valcat,value,'value');
-            case `Math Module`: 
-                const mathmod = await this.driver.wait(until.elementLocated(By.id('mathmodule'), 3000));
-                return true;
+            case `Math Module`:
+                try {
+                    const mathmod = await this.driver.wait(until.elementLocated(By.id('mathmodule')), 1000);
+                    return true;
+                } catch(e) {
+                    return false;
+                }
+            case `Equilateral Triangle Image`: 
+                try {
+                    const eq = await this.driver.wait(until.elementLocated(By.className('chum-questionImage-equilateral')), 1000);
+                    return true;
+                } catch(e) {
+                    return false;
+                }
             default: throw new Error(`${field} not defined in fillField() on ${this.pageName}`);
         }
     }
@@ -39,6 +50,22 @@ export default class ChumTab extends TemplatePage {
             case `Submit`:                 
                 const chumsubmit = await this.driver.wait(until.elementLocated(By.id('chumsubmit'), 3000));
                 await chumsubmit.click();
+                return true;
+            case `Equilateral Image`:
+                const eqimg = await this.driver.wait(until.elementLocated(By.className('chum-questionImage-equilateral'), 3000));
+                await eqimg.click();
+                return true;
+            case `Equilateral`:
+                const eqbutton = await this.driver.wait(until.elementLocated(By.id('equilateral'), 3000));
+                await eqbutton.click();
+                return true;
+            case `Shape Sub Module`: 
+                const shapemod = await this.driver.wait(until.elementLocated(By.id('shapesubmod'), 3000));
+                await shapemod.click();
+                return true;
+            case `Math Sub Module`: 
+                const picon = await this.driver.wait(until.elementLocated(By.id('mathsubmod'), 3000));
+                await picon.click();
                 return true;
             default: throw new Error(`clickButton: ${buttonname} not defined on ${this.pageName} ... `);
         } 

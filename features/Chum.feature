@@ -32,11 +32,6 @@ Feature: Create, Organize, and Delete FlashCards
             | Field Name | Value |
             | owner_id   | 4     |
 
-    # @ChumNewCardwithEquilateral
-    # Scenario: On the Chum tab the User creates a new FlashCard with an Image of an Equilateral
-    #     When The user navigates to FlashCardShark
-    #     And The user logs in as: "QATestUser"
-
     @ChumNewCardwithUnicode
     Scenario: On the Chum tab the User creates a new FlashCard with Unicode characters in the Question Answer and Category (ChumNewCardwithUnicode)
         When The user navigates to FlashCardShark
@@ -58,6 +53,21 @@ Feature: Create, Organize, and Delete FlashCards
             | Field Name | Value         |
             | card       | randomUnicode |
             | answer     | randomUnicode |
+
+
+    @ChumEquilateralisDisplayed
+    Scenario: On the Chum tab the User creates a new FlashCard with an Image of an Equilateral, then when testing, that card displays the image.
+        When The user navigates to FlashCardShark
+        And The user logs in as: "QATestUser"
+        And The user switches to the "Home" Tab
+        And The user activates the "Math" module
+        And The user switches to the "Chum" Tab
+        Then The "Math Module" is displayed
+        And The user clicks the "Shape Sub Module" button
+        And The user clicks the "Equilateral" button
+        Then The "Equilateral Triangle Image" is displayed
+        And The user clicks the "Equilateral Image" button
+        Then The "Equilateral Triangle Image" is not displayed 
 
 
 

@@ -221,3 +221,10 @@ Then('The {string} is displayed', { timeout: 7000 }, async function(thing) {
     if(result !== true) { throw new Error(`${thing} is not displayed.`); }
 });
 
+Then('The {string} is not displayed', { timeout: 7000 }, async function(thing) {
+    logger(`The ${thing} is displayed`);
+    let result = await loginData.currentPage.validateField(thing);
+    if(result !== false) { throw new Error(`${thing} is displayed.`); }
+});
+
+
