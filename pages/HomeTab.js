@@ -253,4 +253,21 @@ export default class HomeTab extends TemplatePage {
         }
     }
 
+    async deleteCategory(cat) {
+        await this.selectCheckBox(cat);
+        await this.clickButton('Delete');
+        await this.driver.wait(until.alertIsPresent(), 1000);
+        // Store the alert in a variable
+        let alert = await this.driver.switchTo().alert();
+        //Store the alert text in a variable
+        let alertText = await alert.getText();
+        if(alertText === 'Are you sure you want to permenantly delete all the questions in these categories ?') {
+            await alert.accept();
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
 }

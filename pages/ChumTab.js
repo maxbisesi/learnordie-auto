@@ -3,6 +3,7 @@ import { loginData } from '../loginData';
 import logger from '../logger';
 import TemplatePage from './TemplatePage';
 import Validate from '../Validate';
+import Utils from '../Utils';
 
 export default class ChumTab extends TemplatePage {
     pageName = 'ChumTab';
@@ -25,9 +26,20 @@ export default class ChumTab extends TemplatePage {
             case `Category`:
                 const valcat = await this.driver.wait(until.elementLocated(By.id('chumcategory'), 3000));
                 return await Validate(valcat,value,'value');
-            case `Math Module`: 
-                const mathmod = await this.driver.wait(until.elementLocated(By.id('mathmodule'), 3000));
-                return true;
+            case `Math Module`:
+                try {
+                    const mathmod = await this.driver.wait(until.elementLocated(By.id('mathmodule')), 1000);
+                    return true;
+                } catch(e) {
+                    return false;
+                }
+            case `Equilateral Triangle Image`: 
+                try {
+                    const eq = await this.driver.wait(until.elementLocated(By.className('chum-questionImage-equilateral')), 1000);
+                    return true;
+                } catch(e) {
+                    return false;
+                }
             default: throw new Error(`${field} not defined in fillField() on ${this.pageName}`);
         }
     }
@@ -38,6 +50,22 @@ export default class ChumTab extends TemplatePage {
             case `Submit`:                 
                 const chumsubmit = await this.driver.wait(until.elementLocated(By.id('chumsubmit'), 3000));
                 await chumsubmit.click();
+                return true;
+            case `Equilateral Image`:
+                const eqimg = await this.driver.wait(until.elementLocated(By.className('chum-questionImage-equilateral'), 3000));
+                await eqimg.click();
+                return true;
+            case `Equilateral`:
+                const eqbutton = await this.driver.wait(until.elementLocated(By.id('equilateral'), 3000));
+                await eqbutton.click();
+                return true;
+            case `Shape Sub Module`: 
+                const shapemod = await this.driver.wait(until.elementLocated(By.id('shapesubmod'), 3000));
+                await shapemod.click();
+                return true;
+            case `Math Sub Module`: 
+                const picon = await this.driver.wait(until.elementLocated(By.id('mathsubmod'), 3000));
+                await picon.click();
                 return true;
             default: throw new Error(`clickButton: ${buttonname} not defined on ${this.pageName} ... `);
         } 
@@ -60,6 +88,50 @@ export default class ChumTab extends TemplatePage {
                 return true;
             default: throw new Error(`${field} not defined in fillField() on ${this.pageName}`);
         }
-	}
+    }
+    
+    async clickUnicodeButton(key,val) {
+        const unicodeCharacters = ['⁰','¹','²','³','⁴','⁵','⁶','⁷','⁸','⁹','¼','½','¾','₀','₁','₂','₃','₄','₅','₆','₇','₈','₉','∞','π'];
+        const unicodeButtons = await this.driver.wait(until.elementsLocated(By.className('unicode-button')));
+        let focusedElement;
+        // Focus on element first 
+        switch(key) {
+            case `Card`: 
+                focusedElement = await this.driver.wait(until.elementLocated(By.id('chumcard'), 3000));
+                focusedElement.click();
+                break;
+            case `Answer`: 
+                focusedElement = this.driver.wait(until.elementLocated(By.id('chumanswer'), 3000));
+                focusedElement.click();
+                break;
+            case `Category`:
+                focusedElement = this.driver.wait(until.elementLocated(By.id('chumcategory'), 3000));
+                focusedElement.click();
+                break;
+            default: throw new Error(`${key} not defined in clickUnicodeButton(key,val) on ${this.pageName}`);
+        }
+
+        if(val.startsWith('randomUnicode:')) {
+            let randomUnicode = '';
+            let uniClicks = val.split(':')[1];
+            if(Utils.randomData.randomUnicode === '' || Utils.randomData.randomUnicode === undefined) {
+                // Unicode characters haven't been clicked and saved yet, so do that then hold on to the value:
+                logger(`Clicking ${uniClicks} unicode characters.`);
+                for(let ranuni = 0; ranuni < uniClicks; ++ranuni) {
+                let rand = Math.floor(Math.random()*unicodeButtons.length);
+                    await unicodeButtons[rand].click();
+                    randomUnicode += await unicodeButtons[rand].getAttribute('value');
+                }
+                logger(`randomUnicode: ${randomUnicode}`);
+                Utils.randomData.randomUnicode = randomUnicode;
+            } else {
+                // There's already a Unicode value stored, use that one. There can only be one
+                focusedElement.sendKeys(Utils.randomData.randomUnicode);
+            }
+            return true;
+        }
+        logger(`Fail unknown val in clickUnicodeButton() on ChumTab`);
+        return false;
+    }
 
 }

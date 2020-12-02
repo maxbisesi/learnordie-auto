@@ -323,7 +323,6 @@ Feature: Interact with Home tab
             | Birchum Bounty Hunter |
             | Birchum Big Foot      |
             | Birchum Pop Warner    |
-        And The user waits "1" seconds
         And The user creates a new Collection named: "CollectionCategoryFilterTest"
         Then The "CollectionCategoryFilterTest" Collection has the following Categories:
             | Category              |
@@ -333,8 +332,7 @@ Feature: Interact with Home tab
         When The user selects the following Categories' checkboxes:
             | Category                     |
             | CollectionCategoryFilterTest |
-            | randomCategory               |
-        And The user waits "1" seconds
+            | randomCategoryCheckbox       |
         And The user clicks the "Filter" button
         And The user switches to the "Test" Tab
         Then The form matches the following values:
@@ -351,7 +349,6 @@ Feature: Interact with Home tab
             | Birchum Big Foot      |
             | Birchum Pop Warner    |
             | randomCategory        |
-        And The user waits "1" seconds
         And The user clicks the "Nailed it" button
         Then The "Category" field value is one of the following:
             | Values                |
@@ -359,7 +356,6 @@ Feature: Interact with Home tab
             | Birchum Big Foot      |
             | Birchum Pop Warner    |
             | randomCategory        |
-        And The user waits "1" seconds
         And The user clicks the "Nailed it" button
         Then The "Category" field value is one of the following:
             | Values                |
@@ -367,7 +363,6 @@ Feature: Interact with Home tab
             | Birchum Big Foot      |
             | Birchum Pop Warner    |
             | randomCategory        |
-        And The user waits "1" seconds
         And The user clicks the "Nailed it" button
         Then The "Category" field value is one of the following:
             | Values                |
@@ -377,9 +372,7 @@ Feature: Interact with Home tab
             | randomCategory        |
         And The user switches to the "Home" Tab
         When The user removes the "Birchum Bounty Hunter" Category from the "CollectionCategoryFilterTest" Collection
-        And The user waits "1" seconds
         When The user removes the "Birchum Big Foot" Category from the "CollectionCategoryFilterTest" Collection
-        And The user waits "1" seconds
         When The user removes the "Birchum Pop Warner" Category from the "CollectionCategoryFilterTest" Collection
 
     @HomeDeleteCategory
@@ -393,19 +386,16 @@ Feature: Interact with Home tab
             | Answer     | It works                |
             | Category   | DeleteCategoryTest      |
         And The user clicks the "Submit" button
-        And The user waits "2" seconds
         And The user fills the form with the following values:
             | Field Name | Value                   |
             | Card       | Delete Category Test 02 |
             | Answer     | It works                |
         And The user clicks the "Submit" button
-        And The user waits "2" seconds
         And The user fills the form with the following values:
             | Field Name | Value                   |
             | Card       | Delete Category Test 03 |
             | Answer     | It works                |
         And The user clicks the "Submit" button
-        And The user waits "2" seconds
         And The user switches to the "Home" Tab
         Then The following Categories are shown:
             | Field Name         | Value |
@@ -414,9 +404,7 @@ Feature: Interact with Home tab
             | Category           |
             | DeleteCategoryTest |
         And The user clicks the "Delete" button
-        And The user waits "1" seconds
         Then The "Are you sure you want to permenantly delete all the questions in these categories ?" alert message is shown
-        And The user waits "5" seconds
         Then The following Categories are shown:
             | Field Name         | Value |
             | DeleteCategoryTest | 0     |
@@ -425,9 +413,9 @@ Feature: Interact with Home tab
             | category | =        | DeleteCategoryTest |
         Then No "FlashCard" records were found
 
-    # @HomeRemoveFilter
-    # Scenario: On the Home tab the User creates a new Collection
-    #     When The client logs in as a test User
+# @HomeRemoveFilter
+# Scenario: On the Home tab the User creates a new Collection
+#     When The client logs in as a test User
 
 
 

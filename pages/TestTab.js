@@ -20,7 +20,7 @@ export default class TestTab extends TemplatePage {
         logger(`validate field on ${this.pageName} field: ${field}  value: ${value}`);
         switch(field) {
             case 'Card Set': 
-                el = await this.driver.wait(until.elementLocated(By.id('testcardset')), 3000);
+                el = await this.driver.wait(until.elementLocated(By.id('testcardset')), 1000);
                 const set = await el.getAttribute('innerText');
                 logger(`actual: ${set} expected: ${value} `);
                 if(`${set}` == value) {
@@ -31,7 +31,7 @@ export default class TestTab extends TemplatePage {
                     return false;
                 }
             case 'Rating': 
-                el = await this.driver.wait(until.elementLocated(By.id('testrating')), 3000);
+                el = await this.driver.wait(until.elementLocated(By.id('testrating')), 1000);
                 const rating = await el.getAttribute('innerText');
                 logger(`actual: ${rating} expected: ${value} `);
                 if(`${rating}` == value) {
@@ -42,7 +42,7 @@ export default class TestTab extends TemplatePage {
                     return false;
                 }
             case 'Card Number': 
-                el = await this.driver.wait(until.elementLocated(By.id('testcardid')), 3000);
+                el = await this.driver.wait(until.elementLocated(By.id('testcardid')), 1000);
                 const cardnumber = await el.getAttribute('innerText');
                 logger(`actual: ${cardnumber} expected: ${value} `);
                 if(`${cardnumber}` == value) {
@@ -53,7 +53,7 @@ export default class TestTab extends TemplatePage {
                     return false;
                 }
             case 'Questions To Review':
-                el = await this.driver.wait(until.elementLocated(By.id('questionstoreview')), 3000);
+                el = await this.driver.wait(until.elementLocated(By.id('questionstoreview')), 1000);
                 const qstoreview = await el.getAttribute('innerText');
                 logger(`actual: ${qstoreview} expected: ${value} `);
                 if(`${qstoreview}` == value) {
@@ -64,7 +64,7 @@ export default class TestTab extends TemplatePage {
                     return false;
                 }
             case 'Points': 
-                el = await this.driver.wait(until.elementLocated(By.id('testpoints'), 3000));
+                el = await this.driver.wait(until.elementLocated(By.id('testpoints')), 1000);
                 const points = await el.getAttribute('textContent');
                 logger(`actual: ${points} expected: ${value} `);
                 if(`${points}` == value) {
@@ -75,7 +75,7 @@ export default class TestTab extends TemplatePage {
                     return false;
                 }
             case 'Question':                 
-                el = await this.driver.wait(until.elementLocated(By.id('localCard'), 3000));
+                el = await this.driver.wait(until.elementLocated(By.id('localCard')), 1000);
                 const q = await el.getAttribute('textContent');
                 logger(`actual: ${q} expected: ${value} `);
                 if(`${q}` == value) {
@@ -86,7 +86,7 @@ export default class TestTab extends TemplatePage {
                     return false;
                 }
             case 'Answer': 
-                el = await this.driver.wait(until.elementLocated(By.id('localAnswer'), 3000));
+                el = await this.driver.wait(until.elementLocated(By.id('localAnswer')), 1000);
                 const a = await el.getAttribute('textContent');
                 logger(`actual: ${a} expected: ${value} `);
                 if(`${a}` == value) {
@@ -97,7 +97,7 @@ export default class TestTab extends TemplatePage {
                     return false;
                 }
             case 'Category': 
-                el = await this.driver.wait(until.elementLocated(By.id('localCategory'), 3000));
+                el = await this.driver.wait(until.elementLocated(By.id('localCategory')), 1000);
                 const cat = await el.getAttribute('defaultValue');
                 logger(`actual: ${cat} expected: ${value} `);
                 if(`${cat}` == value) {
@@ -106,7 +106,11 @@ export default class TestTab extends TemplatePage {
                 }else {
                     logger(`... Categories don't match`);
                     return false;
-                }
+                } //Equilateral Triangle Image
+            case 'Equilateral Triangle Image': 
+                await this.driver.wait(until.elementLocated(By.className('test-questionImage-container')), 1000);
+                await this.driver.wait(until.elementLocated(By.id('testtabequilaterimg')), 1000);
+                return true;
             default: throw new Error(`field ${field} not defined on ${this.pagename}`);
         }
     }
