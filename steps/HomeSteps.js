@@ -70,9 +70,16 @@ When(`The user selects the following Categories' checkboxes:`,{ timeout: 10000 }
     cats.shift();
     for(let i = 0; i < cats.length; i++) {
         logger(`    checking = ${cats[i]}`);
-        if(`${cats[i]}` === 'randomCategory') {
+        if(`${cats[i]}` === 'randomCategoryCheckbox') {
             result = await loginData.currentPage.selectRandomCategoryCheckbox();
             if(result !== true) { throw new Error(`Couldn't select checkbox for: ${cats[i]}`); }
+            continue;
+        }
+        if(`${cats[i]}` === 'randomCategory') {
+            let ranCat = Utils.randomData.randomCategory;
+            logger(`    using randomData: ${ranCat}`)
+            result = await loginData.currentPage.selectCheckBox(ranCat);
+            if(result !== true) { throw new Error(`Couldn't select checkbox for: ${ranCat}`); }
             continue;
         }
         result = await loginData.currentPage.selectCheckBox(cats[i]);
@@ -123,6 +130,20 @@ Then('The following Categories are shown:', { timeout: 4000 }, async function(da
     await this.driver.sleep(this.waitTime);
 });
 
+Then('The following Categories are not shown:', { timeout: 4000 }, async function(datatable) {
+    logger(`The following Categories are not shown`);
+    const tableVals = Utils.processDatatable(datatable);
+    await loginData.currentPage.getCategories();
+    let testResult = true
+    for (let [key, value] of tableVals) {
+        if(loginData.currentPage.categories.has(key) === true) { 
+            logger(`    found ${key} in category table. FAIL.`);
+            testResult = false;
+        }
+    }
+    if (testResult !== true) { throw new Error(`The Category table contains one of the values.`); }
+});
+
 Then('The following Collections are shown:', {timeout: 4000 }, async function(rawtable) {
     logger(`The following Collections are shown`);
     let cols = rawtable['rawTable'];
@@ -131,4 +152,11 @@ Then('The following Collections are shown:', {timeout: 4000 }, async function(ra
     const testResult = await loginData.currentPage.validateForm(cols);
     if (testResult !== true) { throw new Error(`The Form did not match the expected values`); }
     await this.driver.sleep(this.waitTime);
+});
+
+When('The user deletes the {string} Category',{ timeout: 40000 }, async function(category) {
+    if(category === 'randomCategory') { category = Utils.randomData.randomCategory; }
+    logger(`Deleting ${category} Category...`);
+    let result = await loginData.currentPage.deleteCategory(category);
+    if(result !== true) { throw new Error(`Couldn't delete category: ${category}`); }
 });

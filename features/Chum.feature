@@ -67,7 +67,40 @@ Feature: Create, Organize, and Delete FlashCards
         And The user clicks the "Equilateral" button
         Then The "Equilateral Triangle Image" is displayed
         And The user clicks the "Equilateral Image" button
-        Then The "Equilateral Triangle Image" is not displayed 
+        Then The "Equilateral Triangle Image" is not displayed
+
+    @ChumEquilateralShownInTest
+    Scenario: On the Chum tab the User creates a new FlashCard with an Image of an Equilateral, then when testing, that card displays the image.
+        When The user navigates to FlashCardShark
+        And The user logs in as: "QATestUser"
+        And The user switches to the "Home" Tab
+        And The user activates the "Math" module
+        And The user switches to the "Chum" Tab
+        Then The "Math Module" is displayed
+        And The user clicks the "Shape Sub Module" button
+        And The user clicks the "Equilateral" button
+        Then The "Equilateral Triangle Image" is displayed
+        And The user fills the form with the following values:
+            | Field Name | Value          |
+            | Card       | randomCard     |
+            | Answer     | randomAnswer   |
+            | Category   | randomCategory |
+        And The user clicks the "Submit" button
+        Then The "Equilateral Triangle Image" is not displayed
+        And The user switches to the "Home" Tab
+        When The user selects the following Categories' checkboxes:
+            | Category       |
+            | randomCategory |
+        And The user clicks the "Filter" button
+        And The user switches to the "Test" Tab
+        And The user clicks the "Nailed it" button
+        Then The "Equilateral Triangle Image" is displayed
+        And The user switches to the "Home" Tab
+        When The user deletes the "randomCategory" Category
+        Then The following Categories are not shown:
+            | Category       |
+            | randomCategory |
+
 
 
 
