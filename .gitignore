@@ -3,3 +3,4 @@ node_modules
 .eslintrc.json
 reports/report.json
 reports/report.html
+report.html

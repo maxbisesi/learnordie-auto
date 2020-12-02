@@ -28,15 +28,9 @@ Before(async function () {
 
 After(async function (scenario) { 
   // {tags: '@FCSisShown and @UserAfterLoginSeeProfile'}
-  //logger(`Testing complete.`);
-  // logger(`${JSON.stringify(scenario)}`);
-  if (scenario.result.status === "failed") {
-    logger(`Test failed`);
-   // await this.driver.sleep(50000);
-   } else {
-
-   }
-   await this.driver.close();
+    logger(`Testing complete.`);
+    //await this.driver.sleep(50000);
+    await this.driver.close();
 });
 
 When('The user navigates to FlashCardShark',{ timeout: 4000 }, async function() {

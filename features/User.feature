@@ -1,15 +1,6 @@
 @Regression
 @User
-Feature: A user can log in and interact with their profile
-    If a newly registered user is created, they can interact with their profile
-    Guest users can: Add and Study cards, see categories and filter by them
-    but unless they login and register nothing will be saved.
-    If a guest user adds some cards then registers their cards will be saved.
-    If a current user adds some cards then logs in, those new cards will be saved.
-    Session is saved when logging out.
-    Only users can use the Galley.
-    Users are promoted if they meet the new criteria.
-    Newly Registered users are given the Recruit rank when they first register.
+Feature: Chum tab
 
     @FCSisShown
     Scenario: The user opens the App, Login is the first tab (FCSisShown)
@@ -29,24 +20,24 @@ Feature: A user can log in and interact with their profile
             | Field Name | Value              |
             | Card       | SeleniumTestCard   |
             | Answer     | SeleniumTestAnswer |
-            | Category   | SeleniumTests      |
+            | Category   | randomCategory     |
         Then The form matches the following values:
             | Field Name | Value              |
             | Card       | SeleniumTestCard   |
             | Answer     | SeleniumTestAnswer |
-            | Category   | SeleniumTests      |
+            | Category   | randomCategory     |
         And The user clicks the "Submit" button
         # Animation should play and TextAreas should be cleared if this worked
         # Category doesn't get cleared though
         Then The form matches the following values:
-            | Field Name | Value         |
-            | Card       |               |
-            | Answer     |               |
-            | Category   | SeleniumTests |
+            | Field Name | Value          |
+            | Card       |                |
+            | Answer     |                |
+            | Category   | randomCategory |
         And The user switches to the "Home" Tab
         Then The following Categories are shown:
-            | Field Name    | Value |
-            | SeleniumTests | 1     |
+            | Field Name     | Value |
+            | randomCategory | 1     |
 
 
     @UserGuestCardsSavedonRegister
@@ -58,18 +49,18 @@ Feature: A user can log in and interact with their profile
             | Field Name | Value                       |
             | Card       | What's a QA's goal in life? |
             | Answer     | Not quality, Equality.      |
-            | Category   | SeleniumQA                  |
+            | Category   | randomCategory              |
         Then The form matches the following values:
             | Field Name | Value                       |
             | Card       | What's a QA's goal in life? |
             | Answer     | Not quality, Equality.      |
-            | Category   | SeleniumQA                  |
+            | Category   | randomCategory              |
         And The user clicks the "Submit" button
         Then The form matches the following values:
-            | Field Name | Value      |
-            | Card       |            |
-            | Answer     |            |
-            | Category   | SeleniumQA |
+            | Field Name | Value          |
+            | Card       |                |
+            | Answer     |                |
+            | Category   | randomCategory |
         And The user fills the form with the following values:
             | Field Name | Value                      |
             | Card       | How many Dev's equal a QA? |
@@ -80,14 +71,14 @@ Feature: A user can log in and interact with their profile
             | Answer     | 1 QA for every 4 Devs      |
         And The user clicks the "Submit" button
         Then The form matches the following values:
-            | Field Name | Value      |
-            | Card       |            |
-            | Answer     |            |
-            | Category   | SeleniumQA |
+            | Field Name | Value          |
+            | Card       |                |
+            | Answer     |                |
+            | Category   | randomCategory |
         And The user switches to the "Home" Tab
         Then The following Categories are shown:
-            | Field Name | Value |
-            | SeleniumQA | 2     |
+            | Field Name     | Value |
+            | randomCategory | 2     |
         And The user switches to the "Login/Profile" Tab
         And The user clicks the "Come Aboard" button
         And The user fills the form with the following values:
@@ -104,8 +95,13 @@ Feature: A user can log in and interact with their profile
             | Points     | 0              |
         And The user switches to the "Home" Tab
         Then The following Categories are shown:
-            | Field Name | Value |
-            | SeleniumQA | 2     |
+            | Field Name     | Value |
+            | randomCategory | 2     |
+        When The user deletes the "randomCategory" Category
+        Then The following Categories are not shown:
+            | Category       |
+            | randomCategory |
+
 
     @currentUserAddsCardsAsGuest
     Scenario: If a current user adds cards then logs in, those cards are saved and accessible. (currentUserAddsCardsAsGuest)
@@ -134,6 +130,10 @@ Feature: A user can log in and interact with their profile
         Then The following Categories are shown:
             | Field Name     | Value |
             | randomCategory | 1     |
+        When The user deletes the "randomCategory" Category
+        Then The following Categories are not shown:
+            | Category       |
+            | randomCategory |
 
     @UserSessionSavedLogout
     Scenario: Session is saved after logging out (UserSessionSavedLogout)
@@ -145,10 +145,10 @@ Feature: A user can log in and interact with their profile
             | Field Name                   | Value  |
             | Brave the Treacherour Waters | exists |
 
-    # @UserRanksUp
-    # Scenario: Users are promoted if they earn the next rank (UserRanksUp)
-    #     When The user navigates to FlashCardShark
-    #     And The user logs in as: "QATestUser"
+# @UserRanksUp
+# Scenario: Users are promoted if they earn the next rank (UserRanksUp)
+#     When The user navigates to FlashCardShark
+#     And The user logs in as: "QATestUser"
 
 
 # Scenario: Newly registered users are given the Recruit rank after register.
