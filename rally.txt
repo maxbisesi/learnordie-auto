@@ -1,0 +1,95 @@
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+TESTS
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+Home tab:
+----------
+() - Rank
+() - Settings
+(*) - Guest users can delete cards
+
+Test tab:
+----------
+() - randomize questions
+() - Show
+() - Review
+() - switch tabs stay on same question
+() - refresh don't log out
+() - As guest and as user
+() - Points
+() - Review for guests 
+() - Study random filter on
+() - implement other point levels
+
+
+GALLEY
+---------
+(*) - cancel button on cardset modal
+(*) - Study a set 
+() - Delete a set does not delete the cards 
+(*) - Delete card
+() - Share
+() - Search
+(*) - DEFECT = Moving to next page de selects question
+() - Fix up confirm boxes with Custom dialogs or dailog library
+() - randomize study set
+(*) - Unstudy a set
+(*) - in Galley, indicate when a Set is being studied
+
+Images
+--------
+(*) - Can add them through chum, only predefined images though. 
+() - Guest users add images too.
+() - Can see them on question through test.
+
+Profiles
+-------------
+Settings
+() - Modules to add: Math Module
+() - Color Scheme
+() - Avatar
+
+Test Cases
+===========
+() - All selenium tests need to also be done for guests
+() - Move api tests to Jest
+() - Rename categories to see if they merge with existing
+
+Defects:
+=============
+(*) - POINTS
+() - User logs in as guest
+() - Harpoonist badge
+() - key in galley questions
+() - Make sure they know when they are deleting the last cards from a Set
+() - user with no cards, error in galley
+() - re dump DB before sending to production. 
+() - Rating undefined, Id not updating in Test tab
+() - When renaming categories, all categories are displayed outside of collections.
+() - Auth token undefined for logout
+
+Edge Cases:
+=============
+  () - What happens if you delete a card by card_id that doesn't exist in the DB ?:
+      router.post('/deleteCards', async (req,res) => {
+      const ids = req.body.cardids;
+      logger(`...      Deleting cards: ${ids}`);
+      let delTestCard;
+      for(let i = 0; i < ids.length; i++) {
+        delTestCard = await dataDAO.runQuery(`DELETE FROM FlashCards WHERE card_id = ?`,[ids[i]]);
+        if(delTestCard.affectedRows === 1) {
+          logger(`  ... deleted card_id: ${ids[i]}`);
+        } else { 
+          // Not always the case what if they delete a card that doesn't exist in the DB ? 
+          logger(`...   /deleteCards, Error deleting: ${ids}`);
+          res.status(500).send('Internal Server Error');
+        }
+      }
+          res.status(200).send('OK'); 
+      });
+
+
+
+
+
+

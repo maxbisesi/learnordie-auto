@@ -38,6 +38,10 @@ Feature: Chum tab
         Then The following Categories are shown:
             | Field Name     | Value |
             | randomCategory | 1     |
+        When The user deletes the "randomCategory" Category
+        Then The following Categories are not shown:
+            | Category       |
+            | randomCategory |
 
 
     @UserGuestCardsSavedonRegister
