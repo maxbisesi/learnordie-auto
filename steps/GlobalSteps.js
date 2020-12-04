@@ -28,9 +28,9 @@ Before(async function () {
 
 After(async function (scenario) { 
   // {tags: '@FCSisShown and @UserAfterLoginSeeProfile'}
-    logger(`Testing complete.`);
+    logger(`Testing complete. Scenario Status: ${scenario.status}`);
     // Ten second pause after every test.. .. ..
-    await this.driver.sleep(10000);
+    // await this.driver.sleep(10000);
     await this.driver.close();
 });
 
@@ -44,13 +44,13 @@ When('The user navigates to FlashCardShark',{ timeout: 4000 }, async function() 
     await this.driver.wait(() => { return title === 'Flash Card Shark'; }, 5000);
     loginData.currentPage = new LoginProfile(this.driver);
     //logger(`On the App, first page object is: ${JSON.stringify(loginData.currentPage)}`);
-    await this.driver.sleep(this.waitTime);
+    
 });
 
 When('The user logs in as: {string}',{ timeout: 4000 }, async function(usertype) {
     logger(`The user logs in as: ${usertype}`);
     await loginData.currentPage.login(usertype);
-    await this.driver.sleep(this.waitTime);
+    
 });
 
 When('The user uses the app as a Guest', { timeout: 4000 }, async function() {
@@ -68,7 +68,6 @@ When(`The user selects {string} checkbox`, { timeout: 4000 }, async function(che
 When('The user clicks the {string} button',{timeout:4000}, async function(buttonname) {
     logger(`The user clicks the ${buttonname} button`);
     await loginData.currentPage.clickButton(buttonname);
-    await this.driver.sleep(this.waitTime);
 });
 
 When('The user clicks the {string} button {int} times', { timeout: 8000 }, async function(buttonname,times) {
@@ -77,7 +76,7 @@ When('The user clicks the {string} button {int} times', { timeout: 8000 }, async
         logger(`    ... clicking the ${buttonname} button the ${times} time.`);
         await loginData.currentPage.clickButton(buttonname);
     }
-    await this.driver.sleep(this.waitTime);
+    
 });
 
 When('The user fills the form with the following values:',{timeout:4000}, async function(vals) {
@@ -125,7 +124,7 @@ When('The user switches to the {string} Tab',{ timeout: 4000 }, async function(t
             break;
         default: throw new Error(`${tabname} tab not defined.`); 
     }
-    await this.driver.sleep(this.waitTime);
+    
 });
 
 When('The user waits {string} seconds',{ timeout: 60000 }, async function(seconds) {
@@ -161,7 +160,7 @@ Then('The {string} Tab is shown',{ timeout: 4000 }, async function(tabname) {
              break;
         default: throw new Error(`${tabname} tab not defined.`);
     }
-    await this.driver.sleep(this.waitTime);
+    
 });
 
 Then('The form matches the following values:', {timeout: 4000 }, async function(datatable) {
@@ -169,7 +168,7 @@ Then('The form matches the following values:', {timeout: 4000 }, async function(
     const tableVals = Utils.processDatatable(datatable);
     const testResult = await loginData.currentPage.validateForm(tableVals);
     if (testResult !== true) { throw new Error(`The Form did not match the expected values`); }
-    await this.driver.sleep(this.waitTime);
+    
 });
 
 Then('The {string} field value is one of the following:',{timeout: 4000 }, async function(field,rawtable) {
