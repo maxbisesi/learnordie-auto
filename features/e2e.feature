@@ -32,3 +32,45 @@ Feature: Create, Organize, and Delete FlashCards
             | Birchum Security Guard | 1     |
             | Birchum Bounty Hunter  | 1     |
             | Birchum Pop Warner     | 1     |
+
+        @SessionSaved
+        When The user navigates to FlashCardShark
+        And The user logs in as: "QATestUser"
+        And The user switches to the "Chum" Tab
+        # ADD 5 CARDS
+        And The user fills the form with the following values:
+            | Field Name | Value          |
+            | Card       | randomCard     |
+            | Answer     | randomAnswer   |
+            | Category   | randomCategory |
+        And The user clicks the "Submit" button
+        And The user fills the form with the following values:
+            | Field Name | Value          |
+            | Card       | randomCard     |
+            | Answer     | randomAnswer   |
+            | Category   | randomCategory |
+        And The user clicks the "Submit" button
+        And The user fills the form with the following values:
+            | Field Name | Value          |
+            | Card       | randomCard     |
+            | Answer     | randomAnswer   |
+            | Category   | randomCategory |
+        And The user clicks the "Submit" button
+        And The user fills the form with the following values:
+            | Field Name | Value          |
+            | Card       | randomCard     |
+            | Answer     | randomAnswer   |
+            | Category   | randomCategory |
+        And The user clicks the "Submit" button
+        And The user fills the form with the following values:
+            | Field Name | Value          |
+            | Card       | randomCard     |
+            | Answer     | randomAnswer   |
+            | Category   | randomCategory |
+        And The user clicks the "Submit" button
+        #CREATE A CARDSET
+        And The user switches to the "Galley" Tab
+
+
+
+@LoginAsTwoUsers
