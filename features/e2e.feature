@@ -34,6 +34,7 @@ Feature: Create, Organize, and Delete FlashCards
             | Birchum Pop Warner     | 1     |
 
         @SessionSaved
+        Scenario: Session saved
         When The user navigates to FlashCardShark
         And The user logs in as: "QATestUser"
         And The user switches to the "Chum" Tab
@@ -72,5 +73,3 @@ Feature: Create, Organize, and Delete FlashCards
         And The user switches to the "Galley" Tab
 
 
-
-@LoginAsTwoUsers

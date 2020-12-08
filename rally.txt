@@ -69,6 +69,10 @@ Defects:
 () - Auth token undefined for logout
 () - Deleting Card in Home does not remove from Galley
 
+Features
+========
+() - Multiple random cards answers and categories
+
 Edge Cases:
 =============
   () - What happens if you delete a card by card_id that doesn't exist in the DB ?:

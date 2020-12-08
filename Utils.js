@@ -92,26 +92,15 @@ class Utils {
     'BIGDOG','BOII','Marcel','LaSeanabitch','Wilson','Mikey','Nicco','Jesus','Shorty','Mo','Nick','Thom',
     'Jess','Mckinlee','Tanner'],
   
-    randomCard: '',
-    randomAnswer: '',
-    randomCategory:'',
-    randomUsername:'',
-    randomUnicode: ''
+    randomCards: [],
+    randomAnswers: [],
+    randomCategories:[],
+    randomUsernames:[],
+    randomUnicodes: []
   };
 
   nums = [0,1,2,3,4,5,6,7,8,9];
   letters = ['A','B','C','D','E','F','G','H','I','J'];
-
-  constructor() {
-    this.randomData.randomUsername = this.getRandomUsername();
-    this.randomData.randomCategory = this.createrandomCategory();
-    this.randomData.randomCard = this.createRandomCard();
-    this.randomData.randomAnswer = this.createRandomAnswer();
-    logger(`Utils constructor. randomUsername: ${this.randomData.randomUsername}\n 
-            randomCategory: ${this.randomData.randomCategory}\n
-            randomCard: ${this.randomData.randomCard}\n
-            randomAnswer: ${this.randomData.randomAnswer}`);
-  }
 
   // checkRankUp takes the user object
   // then returns the new rank, it's up to the client to determine
@@ -240,32 +229,73 @@ class Utils {
     }
 
     insertSystemVal(val) {
-      //logger(`  insertSystemVal for: |${val}|`);
-      if(val.startsWith('testData')) { 
-        let datavar = val.split(':')[1];
-        // logger(`insertSystemVal datavar: ${datavar}`);
-        // logger(`insertSystemVal testData[datavar]: ${testData[datavar]}`);
-        return testData[datavar];
+      // One bracket for data with numbers
+      // One bracket for data without numbers
+      if(val.includes(':')) {
+        const tokens = val.split(':');
+        const valtype = tokens[0]
+        const valind = tokens[1];
+        let vallength;
+        if ( tokens[2] !== undefined ) {
+          vallength = tokens[2];
+        }
+
+        
+        switch(valtype) {
+          case `randomUsername`: 
+            if (this.randomData.randomUsernames[valind] === undefined) {
+              // IF this is undefined, then that randomData point isn't yet created,
+              // create it, stick it in there and return it.
+              this.randomData.randomUsernames[valind] =  this.getRandomUsername();
+              return this.randomData.randomUsernames[valind];
+            } else {
+              // If it is defined then this method is being used for retrieval and testing so just return it. 
+              return this.randomData.randomUsernames[valind];
+            }
+          case `randomCategory`:
+            if (this.randomData.randomCategories[valind] === undefined) {
+              // IF this is undefined, then that randomData point isn't yet created,
+              // create it, stick it in there and return it.
+              this.randomData.randomCategories[valind] =  this.getRandomCategory();
+              return this.randomData.randomCategories[valind];
+            } else {
+              // If it is defined then this method is being used for retrieval and testing so just return it. 
+              return this.randomData.randomCategories[valind];
+            }
+          case `randomCard`:
+            if (this.randomData.randomCards[valind] === undefined) {
+              // IF this is undefined, then that randomData point isn't yet created,
+              // create it, stick it in there and return it.
+              this.randomData.randomCards[valind] =  this.getRandomCard();
+              return this.randomData.randomCards[valind];
+            } else {
+              // If it is defined then this method is being used for retrieval and testing so just return it. 
+              return this.randomData.randomCards[valind];
+            }
+          case `randomAnswer`:
+            if (this.randomData.randomAnswers[valind] === undefined) {
+              // IF this is undefined, then that randomData point isn't yet created,
+              // create it, stick it in there and return it.
+              this.randomData.randomAnswers[valind] =  this.getRandomAnswer();
+              return this.randomData.randomAnswers[valind];
+            } else {
+              // If it is defined then this method is being used for retrieval and testing so just return it. 
+              return this.randomData.randomAnswers[valind];
+            }
+          case `testData`: 
+             return testData[valind];
+          default: return val;
+        }
+      } else {
+        switch(val) {
+          case `starterMessage`:
+            return config.startermessage;
+          default: return val;
+        }
       }
 
-      switch(val) {
-        case `randomusername`: 
-          return this.randomData.randomUsername;
-        case `randomCategory`:
-          return this.randomData.randomCategory;
-        case `starterMessage`:
-          return config.startermessage;
-        case `randomCard`:
-          return this.randomData.randomCard;
-        case `randomAnswer`:
-          return this.randomData.randomAnswer;
-        case `randomUnicode`:
-          // Should be ok if something like andomUnicode:25 is used it will pass through here. 
-          return this.randomData.randomUnicode;
-        default: return val;
-      }
     }
-
+      
     createCategoryId(name) {
       return name.replace(/\s/g,'').trim().toLowerCase();
     }
@@ -287,7 +317,7 @@ class Utils {
       return randouser; 
     }
 
-    createRandomCard() {
+    getRandomCard() {
       let card = '';
       const words = this.randomData.words.length;
       for( let c = 0; c < 7; c++) {
@@ -298,7 +328,7 @@ class Utils {
       return card;
     }
 
-    createRandomAnswer() {
+    getRandomAnswer() {
       let answer = '';
       const words = this.randomData.words.length;
       for( let c = 0; c < 7; c++) {
@@ -309,7 +339,7 @@ class Utils {
       return answer;
     }
 
-    createrandomCategory() {
+    getRandomCategory() {
       let category = '';
       let letters = this.letters.length;
       for(let c = 0; c < 10; c++) {
