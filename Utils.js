@@ -235,12 +235,7 @@ class Utils {
         const tokens = val.split(':');
         const valtype = tokens[0]
         const valind = tokens[1];
-        let vallength;
-        if ( tokens[2] !== undefined ) {
-          vallength = tokens[2];
-        }
 
-        
         switch(valtype) {
           case `randomUsername`: 
             if (this.randomData.randomUsernames[valind] === undefined) {
@@ -282,6 +277,9 @@ class Utils {
               // If it is defined then this method is being used for retrieval and testing so just return it. 
               return this.randomData.randomAnswers[valind];
             }
+          case `randomUnicode`:
+              // randomUnicode:x only verified here, The unicode buttons on the Math module are clicked on the ChumTab
+              return this.randomData.randomUnicodes[valind];
           case `testData`: 
              return testData[valind];
           default: return val;

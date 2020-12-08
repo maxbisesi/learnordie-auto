@@ -15,6 +15,7 @@ When('The user queries for a FlashCard with the following properties:',{ timeout
         let operator = `${table[i][1]}`;
         let val = `${Utils.insertSystemVal(table[i][2])}`;
         queryList.push({ 'Field':field, 'Operator':operator,'Value': val});
+        logger(`'Field':${field}, 'Operator':${operator},'Value':${val}`);
     }
     let result = await apiManager.queryForFlashCard(queryList);
     if(result !== true) { throw new Error(`Couldn't query for FlashCard with the following props: ${table}`); }
@@ -37,10 +38,10 @@ Then('No {string} records were found',{ timeout: 5000 }, async function(object) 
 Then('The queried for {string} has the following values:',{ timeout: 5000 }, async function(object,rawtable) {
     logger(`The queried for ${object} has the following values:`);
     let vals = Utils.processDatatable(rawtable);
+    logger(`${JSON.stringify(vals)}`);
     switch(object) {
         case 'FlashCard': 
-            vals.forEach( (value, key) => {
-                logger(`datatable[${key}] = ${value} ?`);
+            for( let [key, value] of vals) {
                 if(`${queryData.flashCard[key]}` === `${value}`) {
                     logger(`Match! queried FlashCard field ${key} = ${value}`);
                 } else {    
@@ -48,7 +49,7 @@ Then('The queried for {string} has the following values:',{ timeout: 5000 }, asy
                     logger(`queryData.flashCard[${key}]: ${queryData.flashCard[key]}`);
                     throw new Error(`Queried FlashCard field doesn't match provided values.`);
                 }
-            });
+            }
             break;
         default: throw new Error(`No ${object} definition for this step..`);
     }

@@ -113,30 +113,21 @@ export default class ChumTab extends TemplatePage {
 
         if(val.startsWith('randomUnicode:')) {
             const tokens = val.split(':');
+            const valtype = tokens[0]
             const valind = tokens[1];
+            let randomUnicode = '';
             let vallength;
             if ( tokens[2] !== undefined ) {
               vallength = tokens[2];
             }
-            let randomUnicode = '';
-
-
-            if (Utils.randomData.randomUnicodes[valind] === undefined) {
-                // IF this is undefined, then that randomData point isn't yet created,
-                // create it, stick it in there and return it.
-                // Unicode characters haven't been clicked and saved yet, so do that then hold on to the value:
-                logger(`Clicking ${vallength} unicode characters.`);
-                for(let ranuni = 0; ranuni < vallength; ++ranuni) {
+            logger(`Clicking ${vallength} unicode characters.`);
+            for(let ranuni = 0; ranuni < vallength; ++ranuni) {
                 let rand = Math.floor(Math.random()*unicodeButtons.length);
-                    await unicodeButtons[rand].click();
-                    randomUnicode += await unicodeButtons[rand].getAttribute('value');
-                }
-                logger(`randomUnicode: ${randomUnicode}`);
-                Utils.randomData.randomUnicodes[valind] = randomUnicode;
-            } else {
-                // There's already a Unicode value stored, use that one. There can only be one
-                focusedElement.sendKeys(Utils.randomData.randomUnicodes[valind]);
+                await unicodeButtons[rand].click();
+                randomUnicode += await unicodeButtons[rand].getAttribute('value');
             }
+            logger(`randomUnicode: ${randomUnicode}`);
+            Utils.randomData.randomUnicodes[valind] = randomUnicode;
             return true;
         }
         logger(`Fail unknown val in clickUnicodeButton() on ChumTab`);

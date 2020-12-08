@@ -89,6 +89,18 @@ When('The user fills the form with the following values:',{timeout:4000}, async 
     }
 });
 
+When('The user fills the form with the following Unicode values:',{timeout:4000}, async function(rawtable) {
+    logger(`The user fills the form with the following Unicode values:`);
+    const table = rawtable[`rawTable`];
+    logger(`${JSON.stringify(table)}`);
+    table.shift();
+    for(let [field,value] of table) {
+        if(await loginData.currentPage.clickUnicodeButton(field,value) !== true) {
+            throw new Error(`Error clicking Unicode ${value} on ${loginData.currentPage}`);
+        }
+    }
+});
+
 When('The user saves the {string} field as {string}',{timeout:4000}, async function(field,variable) {
     logger(`The user saves the ${field} field as ${variable}`);
     testData[variable] = await loginData.currentPage.getValue(field);
