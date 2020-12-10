@@ -54,6 +54,7 @@ Test Cases
 () - All selenium tests need to also be done for guests
 () - Move api tests to Jest
 () - Rename categories to see if they merge with existing
+() - Change card cateogry in "Edit Card" updates HomeCategories correctly
 
 Defects:
 =============
