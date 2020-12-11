@@ -49,15 +49,13 @@ Feature: Create, Organize, and Delete FlashCards
             | Category   | randomCategory:0 |
         And The user clicks the "Submit" button
         And The user queries for a FlashCard with the following properties:
-            | Field    | Operator | Value       |
+            | Field    | Operator | Value            |
             | category | =        | randomCategory:0 |
         Then The queried for "FlashCard" has the following values:
             | Field Name | Value           |
             | card       | randomUnicode:0 |
             | answer     | randomUnicode:1 |
         And The user switches to the "Home" tab
-        
-
 
     @ChumEquilateralisDisplayed
     Scenario: On the Chum tab the User creates a new FlashCard with an Image of an Equilateral, then when testing, that card displays the image.

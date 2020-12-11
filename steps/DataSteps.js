@@ -38,15 +38,14 @@ Then('No {string} records were found',{ timeout: 5000 }, async function(object) 
 Then('The queried for {string} has the following values:',{ timeout: 5000 }, async function(object,rawtable) {
     logger(`The queried for ${object} has the following values:`);
     let vals = Utils.processDatatable(rawtable);
-    logger(`${JSON.stringify(vals)}`);
     switch(object) {
         case 'FlashCard': 
             for( let [key, value] of vals) {
                 if(`${queryData.flashCard[key]}` === `${value}`) {
                     logger(`Match! queried FlashCard field ${key} = ${value}`);
                 } else {    
-                    logger(`FAILURE! Queried FlashCard field: ${key} != ${value}`);
-                    logger(`queryData.flashCard[${key}]: ${queryData.flashCard[key]}`);
+                    logger(`FAILURE! Queried FlashCard field: ${key} Doesn't match..`);
+                    logger(`|${value}| != |${queryData.flashCard[key]}|`);
                     throw new Error(`Queried FlashCard field doesn't match provided values.`);
                 }
             }

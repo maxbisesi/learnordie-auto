@@ -28,7 +28,6 @@ Before(async function () {
 
 After(async function (scenario) { 
   // {tags: '@FCSisShown and @UserAfterLoginSeeProfile'}
-    logger(`Testing complete. Scenario Status: ${scenario.status}`);
     // Ten second pause after every test.. .. ..
     // await this.driver.sleep(10000);
     await this.driver.close();
