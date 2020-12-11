@@ -55,6 +55,7 @@ Test Cases
 () - Move api tests to Jest
 () - Rename categories to see if they merge with existing
 () - Change card cateogry in "Edit Card" updates HomeCategories correctly
+() - Login wrong pw and register existing user. 
 
 Defects:
 =============
