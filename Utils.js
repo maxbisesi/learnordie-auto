@@ -223,6 +223,7 @@ class Utils {
       rows.forEach( (row) => {
         let field = this.insertSystemVal(`${row[0]}`);
         let val = this.insertSystemVal(`${row[1]}`);
+        logger(`processDatatable - Field = val: ${field} = ${val}`);
         data.set(field,val);
       }); 
       return data;
@@ -279,6 +280,7 @@ class Utils {
             }
           case `randomUnicode`:
               // randomUnicode:x only verified here, The unicode buttons on the Math module are clicked on the ChumTab
+
               return this.randomData.randomUnicodes[valind];
           case `testData`: 
              return testData[valind];

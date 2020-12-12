@@ -125,6 +125,7 @@ export default class ChumTab extends TemplatePage {
                 let rand = Math.floor(Math.random()*unicodeButtons.length);
                 await unicodeButtons[rand].click();
                 randomUnicode += await unicodeButtons[rand].getAttribute('value');
+                await this.driver.sleep(500);
             }
             logger(`randomUnicode: ${randomUnicode}`);
             Utils.randomData.randomUnicodes[valind] = randomUnicode;

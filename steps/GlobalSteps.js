@@ -88,10 +88,9 @@ When('The user fills the form with the following values:',{timeout:4000}, async 
     }
 });
 
-When('The user fills the form with the following Unicode values:',{timeout:4000}, async function(rawtable) {
+When('The user fills the form with the following Unicode values:',{timeout:11000}, async function(rawtable) {
     logger(`The user fills the form with the following Unicode values:`);
     const table = rawtable[`rawTable`];
-    logger(`${JSON.stringify(table)}`);
     table.shift();
     for(let [field,value] of table) {
         if(await loginData.currentPage.clickUnicodeButton(field,value) !== true) {

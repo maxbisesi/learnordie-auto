@@ -70,6 +70,7 @@ Defects:
 () - When renaming categories, all categories are displayed outside of collections.
 () - Auth token undefined for logout
 () - Deleting Card in Home does not remove from Galley
+() - WEIRD Selenium presses another unicode button when doing @ChumNewCardwithUnicode
 
 Features
 ========

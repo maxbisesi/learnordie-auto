@@ -45,7 +45,7 @@ Then('The queried for {string} has the following values:',{ timeout: 5000 }, asy
                     logger(`Match! queried FlashCard field ${key} = ${value}`);
                 } else {    
                     logger(`FAILURE! Queried FlashCard field: ${key} Doesn't match..`);
-                    logger(`|${value}| != |${queryData.flashCard[key]}|`);
+                    logger(`expected: |${value}| != actual: |${queryData.flashCard[key]}|`);
                     throw new Error(`Queried FlashCard field doesn't match provided values.`);
                 }
             }
