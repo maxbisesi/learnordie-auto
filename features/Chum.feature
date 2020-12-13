@@ -40,20 +40,24 @@ Feature: Create, Organize, and Delete FlashCards
         And The user activates the "Math" module
         And The user switches to the "Chum" Tab
         Then The "Math Module" is displayed
+        And The user fills the form with the following Unicode values:
+            | Field Name | Value              |
+            | Card       | randomUnicode:0:5 |
+            | Answer     | randomUnicode:1:5 |
+        And The user waits "10" seconds
         And The user fills the form with the following values:
             | Field Name | Value            |
-            | Card       | randomUnicode:25 |
-            | Answer     | randomUnicode:25 |
-            | Category   | randomCategory   |
-        And The user clicks the "Submit" button
-        And The user queries for a FlashCard with the following properties:
-            | Field    | Operator | Value          |
-            | category | =        | randomCategory |
-        Then The queried for "FlashCard" has the following values:
-            | Field Name | Value         |
-            | card       | randomUnicode |
-            | answer     | randomUnicode |
-
+            | Category   | randomCategory:0 |
+        And The user waits "20" seconds
+        # And The user clicks the "Submit" button
+        # And The user queries for a FlashCard with the following properties:
+        #     | Field    | Operator | Value            |
+        #     | category | =        | randomCategory:0 |
+        # Then The queried for "FlashCard" has the following values:
+        #     | Field Name | Value           |
+        #     | card       | randomUnicode:0 |
+        #     | answer     | randomUnicode:1 |
+        # And The user switches to the "Home" tab
 
     @ChumEquilateralisDisplayed
     Scenario: On the Chum tab the User creates a new FlashCard with an Image of an Equilateral, then when testing, that card displays the image.

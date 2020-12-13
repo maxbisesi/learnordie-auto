@@ -28,7 +28,6 @@ Before(async function () {
 
 After(async function (scenario) { 
   // {tags: '@FCSisShown and @UserAfterLoginSeeProfile'}
-    logger(`Testing complete. Scenario Status: ${scenario.status}`);
     // Ten second pause after every test.. .. ..
     // await this.driver.sleep(10000);
     await this.driver.close();
@@ -86,6 +85,17 @@ When('The user fills the form with the following values:',{timeout:4000}, async 
     if(fillres !== true) { 
         logger(`Result: ${JSON.stringify(fillres)}`);
         throw new Error(`Error filling form on page ${loginData.currentPage.pageName}`);
+    }
+});
+
+When('The user fills the form with the following Unicode values:',{timeout:11000}, async function(rawtable) {
+    logger(`The user fills the form with the following Unicode values:`);
+    const table = rawtable[`rawTable`];
+    table.shift();
+    for(let [field,value] of table) {
+        if(await loginData.currentPage.clickUnicodeButton(field,value) !== true) {
+            throw new Error(`Error clicking Unicode ${value} on ${loginData.currentPage}`);
+        }
     }
 });
 

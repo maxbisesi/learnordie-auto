@@ -54,6 +54,8 @@ Test Cases
 () - All selenium tests need to also be done for guests
 () - Move api tests to Jest
 () - Rename categories to see if they merge with existing
+() - Change card cateogry in "Edit Card" updates HomeCategories correctly
+() - Login wrong pw and register existing user. 
 
 Defects:
 =============
@@ -68,6 +70,11 @@ Defects:
 () - When renaming categories, all categories are displayed outside of collections.
 () - Auth token undefined for logout
 () - Deleting Card in Home does not remove from Galley
+() - WEIRD Selenium presses another unicode button when doing @ChumNewCardwithUnicode
+
+Features
+========
+() - Multiple random cards answers and categories
 
 Edge Cases:
 =============
