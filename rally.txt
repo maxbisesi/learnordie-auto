@@ -54,6 +54,8 @@ Test Cases
 () - All selenium tests need to also be done for guests
 () - Move api tests to Jest
 () - Rename categories to see if they merge with existing
+() - Logout thne log back in same user.
+() - Logout as one, login as another user. 
 
 Defects:
 =============
