@@ -56,6 +56,7 @@ Test Cases
 () - Rename categories to see if they merge with existing
 () - Logout thne log back in same user.
 () - Logout as one, login as another user. 
+() - Test new Card Count feature
 
 Defects:
 =============
